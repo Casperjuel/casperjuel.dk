@@ -28,32 +28,9 @@ export const Waves = (p) => {
     let xWaveOffset = 3;
     let xWaveSpeed = 0.03;
 
-    // Center matrix
     p.translate(p.width / 2, p.height / 2);
-
-    // Reposition  matrix depending on width & height of the grid
     p.translate((-(columns - 1) * xSpace) / 2, (-(rows - 1) * ySpace) / 2);
-
     p.noStroke();
-    // for (var i = 0; i < columns; i++) {
-    //   for (var j = 0; j < rows; j++) {
-    //     yWave =
-    //       p.sin(p.frameCount * yWaveSpeed + i * yWaveLength + j * yWaveOffset) *
-    //       yWaveSize;
-    //     xWave =
-    //       p.cos(p.frameCount * xWaveSpeed + j * xWaveLength + i * xWaveOffset) *
-    //       xWaveSize;
-
-    //     p.push();
-    //     p.translate(i * xSpace, j * ySpace);
-    //     p.fill(255);
-    //     p.ellipse(0, 0, 2, 2);
-    //     p.fill(255, 0, 0, 10);
-    //     p.pop();
-    //   }
-    // }
-
-
 
     for (var i = 0; i < columns; i++) {
       for (var j = 0; j < rows; j++) {
