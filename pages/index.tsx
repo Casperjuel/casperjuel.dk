@@ -1,12 +1,12 @@
-import type { NextPage } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
-
-import styles from "../styles/Home.module.scss";
-import { Waves } from "../src/artwork/wave";
 import { Logo } from "../src/assets/logo";
-const P5Container = dynamic(() => import("../src/p5component"), { ssr: false });
+import type { NextPage } from "next";
 import Script from "next/script";
+import { Waves } from "../src/artwork/wave";
+import dynamic from "next/dynamic";
+import styles from "../styles/Home.module.scss";
+
+const P5Container = dynamic(() => import("../src/p5component"), { ssr: false });
 
 const Home: NextPage = () => {
   return (
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
           <Logo />
           <p>
             I’m a Creative Developer working at&nbsp;
-            <a href="https://www.awaze.com/">Awaze</a>
+            <a href="https://www.signifly.com/">Signifly</a>
           </p>
         </div>
         <div className={styles.footer}>

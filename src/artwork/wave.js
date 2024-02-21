@@ -1,14 +1,13 @@
 export const Waves = (p) => {
   let rows = 90;
   let columns = 40;
-  let xSpace = 30;
-  let ySpace = 10;
+  let xSpace = 60;
+  let ySpace = 40;
 
   let yWave;
-  console.log(p.windowWidth);
   let xWave;
 
-  let ballSize = 10;
+  let ballSize = 45;
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
@@ -21,7 +20,7 @@ export const Waves = (p) => {
     let yWaveSize = 40;
     let yWaveLength = 0.5;
     let yWaveOffset = 0.1;
-    let yWaveSpeed = 0.03;
+    let yWaveSpeed = 0.01;
 
     let xWaveSize = 40;
     let xWaveLength = 54;
