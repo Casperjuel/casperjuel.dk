@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 import Script from "next/script";
 import { Waves } from "../src/artwork/wave";
 import dynamic from "next/dynamic";
-import styles from "../styles/Home.module.scss";
+import styles from "../styles/home.module.scss";
 
 const P5Container = dynamic(() => import("../src/p5component"), { ssr: false });
 

@@ -5,11 +5,8 @@
 
 .path {
     stroke-dasharray: 1200;
-    /* Adjust based on the length of your path */
     stroke-dashoffset: -1200;
-    /* Start from the other end */
     animation: drawReverse 1s cubic-bezier(0, .1, .14, .92) forwards, strokeFill 0.5s ease-in 1s forwards;
-    /* Custom animation for reverse direction */
 }
 
 .fill {
