@@ -14,17 +14,16 @@ export const Waves = (p) => {
   };
 
   p.draw = (color) => {
-    const circleColor = color || [255, 255, 10];
     p.background("black");
 
-    let yWaveSize = 40;
-    let yWaveLength = 0.5;
-    let yWaveOffset = 0.1;
-    let yWaveSpeed = 0.01;
+    let yWaveSize = 10;
+    let yWaveLength = 10;
+    let yWaveOffset = 300;
+    let yWaveSpeed = 0.03;
 
-    let xWaveSize = 40;
-    let xWaveLength = 54;
-    let xWaveOffset = 3;
+    let xWaveSize = 30;
+    let xWaveLength = 14;
+    let xWaveOffset = 100;
     let xWaveSpeed = 0.03;
 
     p.translate(p.width / 2, p.height / 2);
@@ -42,13 +41,13 @@ export const Waves = (p) => {
 
         p.push();
         p.translate(i * xSpace, j * ySpace);
-        p.fill(0, 159, 227, 100);
+        p.fill(100, 70);
         p.ellipse(xWave, yWave, ballSize, ballSize);
 
-        p.fill(230, 0, 126, 100);
+        p.fill(10, 100);
         p.ellipse(xWave * 2, yWave * 2, ballSize, ballSize);
 
-        p.fill(255, 50);
+        p.fill(50, 50);
         p.ellipse(xWave * 0.4, yWave * 0.4, ballSize, ballSize);
         p.pop();
       }
