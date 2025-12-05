@@ -1,0 +1,197 @@
+.scene {
+  position: fixed;
+  left: 10%;
+  top: 10%;
+  width: 80%;
+  height: 80%;
+  z-index: 70;
+  pointer-events: none;
+  overflow: visible;
+  border-radius: 19px;
+  --mouse-x: 0;
+  --mouse-y: 0;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.pill {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+}
+
+.clickTarget {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glow {
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(180deg,
+    var(--gradient-1), var(--gradient-2), var(--gradient-3),
+    var(--gradient-4), var(--gradient-5), var(--gradient-6),
+    var(--gradient-1), var(--gradient-2));
+  background-size: 100% 300%;
+  animation: gradientShift 8s linear infinite;
+  filter: blur(20px);
+  border-radius: 9999px;
+  z-index: -1;
+  transform: translate(calc(var(--mouse-x) * -5px), calc(var(--mouse-y) * -5px));
+  will-change: transform;
+  transition: background var(--palette-transition);
+}
+
+.rim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    var(--gradient-1), var(--gradient-2), var(--gradient-3),
+    var(--color-surface), var(--gradient-5), var(--gradient-6),
+    var(--gradient-1), var(--gradient-2));
+  background-size: 100% 300%;
+  animation: gradientShift 8s linear infinite;
+  border-radius: 9999px;
+  padding: 1.5px;
+  box-shadow: 0 0 10px rgba(var(--color-text-rgb), 0.2);
+  transition: background var(--palette-transition);
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+  background: rgba(var(--color-background-rgb), 0.5);
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--palette-transition);
+}
+
+.innerGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(180deg,
+    rgba(var(--gradient-1-rgb), 0.3), rgba(var(--gradient-2-rgb), 0.3),
+    rgba(var(--gradient-3-rgb), 0.3), rgba(var(--gradient-4-rgb), 0.3),
+    rgba(var(--gradient-5-rgb), 0.3), rgba(var(--gradient-6-rgb), 0.3),
+    rgba(var(--gradient-1-rgb), 0.3), rgba(var(--gradient-2-rgb), 0.3));
+  background-size: 100% 300%;
+  animation: gradientShift 8s linear infinite;
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  transform: translate(calc(var(--mouse-x) * 3px), calc(var(--mouse-y) * 3px));
+  will-change: transform;
+  transition: background var(--palette-transition);
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.5) 50%, rgba(var(--color-text-rgb), 0) 70%,
+    transparent 100%);
+  filter: blur(4px);
+  transform: scaleX(2.5) translateX(calc(var(--mouse-x) * 10%));
+  will-change: transform;
+}
+
+.depthShadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 0 20px 5px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+}
+
+.chromatic {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  opacity: var(--chromatic-opacity, 0);
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+  }
+
+  &::before {
+    border-color: rgba(255, 0, 0, 0.6);
+    transform: translate(-3px, 0);
+  }
+
+  &::after {
+    border-color: rgba(0, 100, 255, 0.6);
+    transform: translate(3px, 0);
+  }
+}
+
+.specular {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg) translate(calc(var(--mouse-x) * 20px), calc(var(--mouse-y) * 60px));
+  width: 120%;
+  height: 40%;
+  background: radial-gradient(ellipse at center,
+    rgba(var(--color-text-rgb), 0.9) 0%,
+    rgba(var(--color-text-rgb), 0.4) 20%,
+    transparent 60%);
+  filter: blur(6px);
+  mix-blend-mode: overlay;
+  z-index: 10;
+  will-change: transform;
+  transition: background var(--palette-transition);
+}
+
+.specularBall {
+  height: 60%;
+  width: 80%;
+  top: 30%;
+}
+
+.secondaryHighlight {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(calc(-50% + var(--mouse-x) * 40px), calc(-50% + var(--mouse-y) * 120px));
+  width: 50%;
+  height: 8%;
+  background: var(--color-text);
+  scale: 1.5;
+  filter: blur(30px);
+  border-radius: 50%;
+  opacity: 0.9;
+  z-index: 11;
+  mix-blend-mode: screen;
+  will-change: transform;
+  transition: background var(--palette-transition);
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3), var(--gradient-5));
+  box-shadow: 0 0 10px rgba(var(--gradient-1-rgb), 0.8), 0 0 20px rgba(var(--gradient-3-rgb), 0.5);
+  pointer-events: none;
+}

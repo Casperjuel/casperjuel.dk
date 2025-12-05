@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+}
+
+.text {
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  transition: color var(--palette-transition);
+}
+
+.word {
+  display: inline-block;
+  will-change: opacity, transform;
+}

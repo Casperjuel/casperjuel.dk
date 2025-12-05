@@ -1,0 +1,38 @@
+.gradient {
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+}
+
+.border {
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+    position: absolute;
+    inset: 0;
+    padding: 5px;
+    background: linear-gradient(180deg,
+        var(--gradient-1),
+        var(--gradient-2),
+        var(--gradient-3),
+        var(--gradient-4),
+        var(--gradient-5),
+        var(--gradient-6),
+        var(--gradient-1));
+    background-size: 100% 400%;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: var(--glow-opacity, 0.8);
+    transition: background var(--palette-transition), opacity var(--palette-transition);
+  }
+}

@@ -1,0 +1,79 @@
+.switcher {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+  background: rgba(var(--color-background-rgb), 0.8);
+  border: 1px solid rgba(var(--color-text-rgb), 0.15);
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+
+  cursor: pointer;
+  outline: none;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: rgba(var(--color-text-rgb), 0.3);
+    box-shadow: 0 0 20px rgba(var(--color-text-rgb), 0.1);
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: color var(--palette-transition);
+}
+
+.track {
+  position: relative;
+  width: 44px;
+  height: 16px;
+  background: rgba(var(--color-text-rgb), 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-text);
+  border-radius: 50%;
+  transition: background var(--palette-transition);
+}
+
+// Mobile positioning
+@media screen and (max-width: 768px) {
+  .switcher {
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .track {
+    width: 36px;
+    height: 14px;
+  }
+
+  .thumb {
+    width: 10px;
+    height: 10px;
+  }
+
+  .icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}

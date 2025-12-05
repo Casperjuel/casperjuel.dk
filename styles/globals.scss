@@ -1,20 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Penstand';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/font/Penstand-G3e9q.woff') format('woff');
+}
+
+:root {
+  --gradient-1: #ff0000;
+  --gradient-1-rgb: 255, 0, 0;
+
+  --gradient-2: #ffff00;
+  --gradient-2-rgb: 255, 255, 0;
+
+  --gradient-3: #00ff00;
+  --gradient-3-rgb: 0, 255, 0;
+
+  --gradient-4: #00ffff;
+  --gradient-4-rgb: 0, 255, 255;
+
+  --gradient-5: #0000ff;
+  --gradient-5-rgb: 0, 0, 255;
+
+  --gradient-6: #ff00ff;
+  --gradient-6-rgb: 255, 0, 255;
+
+  --color-primary: #ff00ff;
+  --color-primary-rgb: 255, 0, 255;
+
+  --color-secondary: #00ffff;
+  --color-secondary-rgb: 0, 255, 255;
+
+  --color-background: #000000;
+  --color-background-rgb: 0, 0, 0;
+
+  --color-surface: #111111;
+  --color-surface-rgb: 17, 17, 17;
+
+  --color-text: #ffffff;
+  --color-text-rgb: 255, 255, 255;
+
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-subtle: rgba(255, 255, 255, 0.5);
+
+  --palette-transition: 0.5s ease;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: monospace;
+  font-family: 'Mulish', sans-serif;
   cursor: crosshair;
-  background-color: black;
-  color: white;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color var(--palette-transition), color var(--palette-transition);
+
+  @media screen and (max-width: 768px) {
+    cursor: auto;
+  }
 }
 
 a {
-  color: magenta;
+  color: var(--color-primary);
   text-decoration: underline;
   transition: color 100ms ease-in-out;
 
   &:hover {
-    color: cyan;
+    color: var(--color-secondary);
   }
 }
 
@@ -24,7 +78,6 @@ a {
 
 body {
   min-height: 100vh;
-  /* mobile viewport bug fix */
   min-height: -webkit-fill-available;
 }
 
