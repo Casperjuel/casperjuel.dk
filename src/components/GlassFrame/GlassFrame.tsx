@@ -1,11 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./GlassFrame.module.scss";
 
 export const GlassFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hydraRef = useRef<any>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setExpanded(true);
+    }, 4000); // 4s delay - let 3D logo play before growing
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current || hydraRef.current) return;
@@ -36,7 +45,7 @@ export const GlassFrame = () => {
   }, []);
 
   return (
-    <div className={styles.frameContainer}>
+    <div className={`${styles.frameContainer} ${expanded ? styles.expanded : ""}`}>
       <canvas ref={canvasRef} className={styles.hydraCanvas} />
       <div className={styles.glow} />
       <div className={styles.border} />

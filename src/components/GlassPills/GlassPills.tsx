@@ -112,6 +112,15 @@ export const GlassPills = () => {
   const titleBoxesRef = useRef<TitleBox[]>([]);
   const scrollRef = useRef({ y: 0, velocity: 0 });
   const poppedBallsRef = useRef<Set<number>>(new Set());
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 5000); // 5s delay before showing balls
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const [balls, setBalls] = useState<Ball[]>([
     { id: 1, x: 100, y: 100, vx: 3, vy: 2, size: 60 },
@@ -212,7 +221,8 @@ export const GlassPills = () => {
     const friction = 0.998;
     const cursorForce = 0.8;
     const cursorRadius = 150;
-    const bounceDamping = 0.85;
+    const bounceDamping = 0.95;
+    const minBounceVelocity = 3;
 
     const checkTitleCollision = (
       ballX: number,
@@ -272,12 +282,21 @@ export const GlassPills = () => {
           for (const box of titleBoxesRef.current) {
             const { collision, normalX, normalY, overlap } = checkTitleCollision(x, y, size, box);
             if (collision) {
-              x += normalX * overlap * 1.1;
-              y += normalY * overlap * 1.1;
+              x += normalX * overlap * 1.5;
+              y += normalY * overlap * 1.5;
               const dotProduct = vx * normalX + vy * normalY;
               if (dotProduct < 0) {
                 vx = (vx - 2 * dotProduct * normalX) * bounceDamping;
                 vy = (vy - 2 * dotProduct * normalY) * bounceDamping;
+
+                // Ensure minimum bounce velocity
+                const bounceVel = Math.sqrt(vx * vx + vy * vy);
+                if (bounceVel < minBounceVelocity) {
+                  const scale = minBounceVelocity / (bounceVel || 1);
+                  vx = normalX * minBounceVelocity + (Math.random() - 0.5) * 2;
+                  vy = normalY * minBounceVelocity + (Math.random() - 0.5) * 2;
+                }
+
                 const scrollInfluence = Math.abs(scrollVelocity) * 0.15;
                 const scrollDirection = scrollVelocity > 0 ? 1 : -1;
                 vy += scrollDirection * scrollInfluence * (1 + Math.random() * 0.5);
@@ -376,10 +395,13 @@ export const GlassPills = () => {
   }, [balls, popBall]);
 
   return (
-    <div
+    <motion.div
       className={styles.scene}
       ref={containerRef}
       onClick={handleSceneClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <AnimatePresence>
         {balls.map((ball) => (
@@ -397,7 +419,7 @@ export const GlassPills = () => {
           <PopParticle key={particle.id} {...particle} />
         ))}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

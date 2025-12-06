@@ -20,6 +20,7 @@ export default function Home() {
 
   return (
     <>
+      <Logo />
       <ThemeSwitcher />
       <GlassFrame />
       <GlassPills />
@@ -28,13 +29,12 @@ export default function Home() {
       <main className={styles.main}>
         <motion.section className={styles.hero} style={{ opacity: heroOpacity }}>
           <div className={styles.heroContent}>
-            <Logo />
             <SignatureName />
             <motion.p
               className={styles.heroSubtitle}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 4.5, duration: 0.8 }}
             >
               UI + Code in Copenhagen
             </motion.p>
@@ -45,7 +45,7 @@ export default function Home() {
         <ScrollSection id="about" className={styles.about}>
           <div className={styles.aboutContent}>
             <AnimatedText
-              text="love creating digital things with code"
+              text="love for creating digital things with code"
               as="h2"
               stagger={0.06}
             />

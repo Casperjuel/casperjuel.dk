@@ -8,10 +8,16 @@
   pointer-events: none;
   border-radius: 20px;
   overflow: hidden;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (max-width: 768px) {
     display: none;
   }
+}
+
+.expanded {
+  clip-path: circle(75% at 50% 50%);
 }
 
 .hydraCanvas {

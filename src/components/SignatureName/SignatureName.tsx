@@ -1,10 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import styles from "./SignatureName.module.scss";
 
 export const SignatureName = () => {
   const name = "Casper juel";
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldAnimate(true);
+    }, 4000); // 4s delay before showing name
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const letterVariants = {
     hidden: {
@@ -28,7 +38,7 @@ export const SignatureName = () => {
     <motion.h1
       className={styles.name}
       initial="hidden"
-      animate="visible"
+      animate={shouldAnimate ? "visible" : "hidden"}
     >
       {name.split("").map((letter, i) => (
         <motion.span

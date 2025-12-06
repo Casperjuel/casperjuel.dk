@@ -1,136 +1,140 @@
-import { motion } from "framer-motion";
+"use client";
+
+import { useRef, Suspense, useEffect, useMemo, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useGLTF, Environment } from "@react-three/drei";
+import * as THREE from "three";
 import styles from "./logo.module.scss";
 
-const logoPath = `M318.1,112.8C268.9,129,268.9,129,226,151.5l-4.6,2.4l-0.7,5.2c-0.4,3.1-0.8,6.2-1.2,9.4
-  c-4.3,33.6-9.6,75.4-21,112.9c-12.8,42.2-30.7,70.5-54.5,86.6c-5.3,2.2-10.3,3.3-14.8,3.3c-7.7,0-14.1-3.2-19.5-9.8
-  c-10.3-12.7-14.8-36.6-10.6-56.8l0.1-0.5l0.1-0.5c3.3-30.7,15.2-61,34.5-87.6c18.7-25.8,43.5-47,71.6-61.3c1.6-0.6,3-1.4,4.3-2
-  c0.4-0.2,0.9-0.4,1.3-0.7l5-2.5l0.5-5.6c1-11.8,1.7-23.6,2.3-35l1-19.3l-15.1,7c-31,14.3-61.8,32.9-94.1,56.7l-0.2,0.2
-  c-3.4,2.7-6.8,5.4-10.1,8.1c-8.5,7-16.6,13.5-25.5,18.6l-0.3,0.2l-0.3,0.2c-7.1,4.8-14.9,7.3-22.3,7.3c-8.8,0-16.8-3.4-22.7-9.7
-  c-6.6-7-9.7-17.1-9-28.3c1.2-16.7,7.5-35.5,18.9-55.8l0.2-0.3l0.2-0.3C46.4,78,55.9,65.7,66.7,57.8c9-6.6,18.7-10.1,27.9-10.1
-  c10.5,0,19.2,4.7,23.2,12.6c5.7,11.3,1.8,27.6-10.9,44.9`;
+const mousePos = { x: 0, y: 0 };
 
-const dotPath = `M221.2,47.3c10.4-4.6,16.4-6.9,19.1-18.5c13.3-34.3-37.3-39.6-41-6.9C197.9,34,207.4,50.3,221.2,47.3`;
+function Model() {
+  const { scene } = useGLTF("/cj_logo.gltf");
+  const ref = useRef<THREE.Group>(null);
+  const currentScale = useRef(3);
+  const targetScale = 0.03;
+  const startTime = useRef<number | null>(null);
+  const animationDelay = 0;
+  const targetRotation = useRef({ x: 0, y: 0 });
+  const introRotation = useRef(Math.PI * 2); // Start with a full rotation
+  const introComplete = useRef(false);
 
-export const Logo = () => (
 
-  <svg
-    className={styles.logo}
-    viewBox="0 0 338.1 391.3"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      {/* Colorful gradient */}
-      <linearGradient id="logo-bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#ff5e00" />
-        <stop offset="25%" stopColor="#ff00aa" />
-        <stop offset="50%" stopColor="#00ff41" />
-        <stop offset="75%" stopColor="#00aaff" />
-        <stop offset="100%" stopColor="#7a00ff" />
-      </linearGradient>
+  useFrame((state) => {
+    if (ref.current) {
+      if (startTime.current === null) {
+        startTime.current = state.clock.elapsedTime;
+      }
 
-      {/* Clip path for the logo stroke */}
-      <clipPath id="logo-clip">
-        <path
-          d={logoPath}
-          fill="none"
-          stroke="white"
-          strokeWidth="30"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d={dotPath} />
-      </clipPath>
+      const elapsed = state.clock.elapsedTime - startTime.current;
 
-      {/* Liquid glass filter */}
-      <filter id="logo-liquid" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blurred" />
+      if (elapsed >= animationDelay) {
+        currentScale.current += (targetScale - currentScale.current) * 0.02;
+      }
+      ref.current.scale.setScalar(currentScale.current);
 
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.008"
-          numOctaves="4"
-          seed="42"
-          result="noise"
-        />
+      // Intro rotation animation
+      if (!introComplete.current) {
+        introRotation.current += (0 - introRotation.current) * 0.02;
+        ref.current.rotation.y = introRotation.current;
 
-        <feDisplacementMap
-          in="blurred"
-          in2="noise"
-          scale="50"
-          xChannelSelector="R"
-          yChannelSelector="G"
-          result="displaced"
-        />
+        // Once intro rotation is nearly done, enable cursor tracking
+        if (Math.abs(introRotation.current) < 0.1) {
+          introComplete.current = true;
+        }
+      } else {
+        // Face the cursor with smooth lerping (offset to compensate for model's default rotation)
+        const yOffset = -0.55; // Compensate for model facing slightly right
+        targetRotation.current.y = mousePos.x * 0.5 + yOffset;
+        targetRotation.current.x = -mousePos.y * 0.3;
 
-        <feColorMatrix
-          in="displaced"
-          type="saturate"
-          values="3"
-          result="saturated"
-        />
+        ref.current.rotation.y += (targetRotation.current.y - ref.current.rotation.y) * 0.05;
+        ref.current.rotation.x += (targetRotation.current.x - ref.current.rotation.x) * 0.05;
+      }
+    }
+  });
 
-        <feSpecularLighting
-          in="noise"
-          surfaceScale="3"
-          specularConstant="0.8"
-          specularExponent="20"
-          lightingColor="#ffffff"
-          result="specular"
-        >
-          <fePointLight x="170" y="-50" z="150" />
-        </feSpecularLighting>
+  return (
+    <group ref={ref} scale={3} position={[0.5, 0, 0]} rotation={[0, Math.PI * 2, 0]}>
+      <primitive object={scene} position={[-0.5, 0, 0]} rotation={[0, 0, 0]} />
+    </group>
+  );
+}
 
-        <feComponentTransfer in="specular" result="specular_faded">
-          <feFuncA type="linear" slope="0.3" />
-        </feComponentTransfer>
+export const Logo = () => {
+  const [opacity, setOpacity] = useState(1);
 
-        <feBlend in="specular_faded" in2="saturated" mode="screen" />
-      </filter>
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mousePos.y = (e.clientY / window.innerHeight) * 2 - 1;
+    };
 
-      {/* Glow filter */}
-      <filter id="logo-glow" x="-100%" y="-100%" width="300%" height="300%">
-        <feGaussianBlur stdDeviation="8" result="blur" />
-      </filter>
-    </defs>
+    const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
+      if (e.gamma !== null && e.beta !== null) {
+        // gamma: left/right tilt (-90 to 90)
+        // beta: front/back tilt (-180 to 180)
+        mousePos.x = Math.max(-1, Math.min(1, e.gamma / 30));
+        mousePos.y = Math.max(-1, Math.min(1, (e.beta - 45) / 30)); // offset by 45 for natural phone holding angle
+      }
+    };
 
-    {/* Outer glow */}
-    <g filter="url(#logo-glow)" className={styles.glowLayer}>
-      <path
-        d={logoPath}
-        fill="none"
-        stroke="url(#logo-bg-gradient)"
-        strokeWidth="35"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.4"
-      />
-      <path d={dotPath} fill="url(#logo-bg-gradient)" opacity="0.4" />
-    </g>
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const threshold = window.innerHeight * 0.5;
+      if (scrollY > threshold) {
+        setOpacity(0.5);
+      } else {
+        setOpacity(1);
+      }
+    };
 
-    {/* Main logo with liquid glass effect */}
-    <g clipPath="url(#logo-clip)" filter="url(#logo-liquid)">
-      <rect x="-50" y="-50" width="450" height="500" fill="url(#logo-bg-gradient)" />
-    </g>
+    // Check if device orientation is available (mobile)
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    {/* White rim */}
-    <path
-      className={styles.rimPath}
-      d={logoPath}
-      fill="none"
-      stroke="rgba(255,255,255,0.2)"
-      strokeWidth="32"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    if (isMobile && typeof DeviceOrientationEvent !== 'undefined') {
+      // iOS 13+ requires permission
+      if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
+        // We'll request on first touch
+        const requestPermission = () => {
+          (DeviceOrientationEvent as any).requestPermission()
+            .then((response: string) => {
+              if (response === 'granted') {
+                window.addEventListener('deviceorientation', handleDeviceOrientation);
+              }
+            })
+            .catch(console.error);
+          window.removeEventListener('touchstart', requestPermission);
+        };
+        window.addEventListener('touchstart', requestPermission, { once: true });
+      } else {
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
+      }
+    }
 
-    {/* Dot rim */}
-    <path
-      className={styles.rimDot}
-      d={dotPath}
-      fill="none"
-      stroke="rgba(255,255,255,0.2)"
-      strokeWidth="2"
-      transform="scale(1.08) translate(-8, -2)"
-    />
-  </svg>
-);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
+    };
+  }, []);
+
+  return (
+    <div className={styles.logoWrapper} style={{ opacity, transition: "opacity 0.5s ease" }}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#ff00ff" />
+        <pointLight position={[0, 0, 10]} intensity={0.5} color="#00ffff" />
+        <Suspense fallback={null}>
+          <Model />
+          <Environment preset="city" />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+};
+
+useGLTF.preload("/cj_logo.gltf");
