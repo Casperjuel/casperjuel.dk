@@ -36,7 +36,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              dev
+              UI + Code in Copenhagen
             </motion.p>
           </div>
           <ScrollIndicator />
