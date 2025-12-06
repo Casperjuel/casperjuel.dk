@@ -9,6 +9,7 @@ interface AnimatedTextProps {
   className?: string;
   as?: "h1" | "h2" | "h3" | "p" | "span";
   stagger?: number;
+  uppercase?: boolean;
 }
 
 export const AnimatedText = ({
@@ -16,6 +17,7 @@ export const AnimatedText = ({
   className,
   as: Tag = "p",
   stagger = 0.03,
+  uppercase = false,
 }: AnimatedTextProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -28,7 +30,7 @@ export const AnimatedText = ({
 
   return (
     <div ref={ref} className={`${styles.container} ${className || ""}`}>
-      <Tag className={styles.text}>
+      <Tag className={`${styles.text} ${uppercase ? styles.uppercase : ""}`}>
         {words.map((word, wordIndex) => {
           // Calculate the progress range for this word
           const start = wordIndex / words.length;
@@ -54,9 +56,10 @@ interface WordProps {
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   start: number;
   end: number;
+  uppercase?: boolean;
 }
 
-const Word = ({ word, progress, start, end }: WordProps) => {
+const Word = ({ word, progress, start, end, uppercase = false }: WordProps) => {
   const opacity = useTransform(progress, [start, end], [0.2, 1]);
   const y = useTransform(progress, [start, end], [10, 0]);
 

@@ -1,5 +1,9 @@
 .container {
   width: 100%;
+
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 4.5rem);
+  }
 }
 
 .text {
@@ -13,6 +17,10 @@
   justify-content: center;
   text-align: center;
   transition: color var(--palette-transition);
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .word {

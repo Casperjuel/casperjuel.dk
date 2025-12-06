@@ -36,7 +36,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Creative Developer
+              dev
             </motion.p>
           </div>
           <ScrollIndicator />
@@ -45,8 +45,9 @@ export default function Home() {
         <ScrollSection id="about" className={styles.about}>
           <div className={styles.aboutContent}>
             <AnimatedText
-              text="I build things for the web that feel alive"
+              text="love creating digital things with code"
               as="h2"
+              stagger={0.06}
             />
             <motion.p
               className={styles.bio}
@@ -55,9 +56,8 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              Developer with a passion for creative coding, motion, and crafting
-              digital experiences that push boundaries. Based in Copenhagen,
-              currently bringing ideas to life at Signifly.
+              Creating things online for more than 13 years. I have a passion for digital design, code, and tech. Based in Copenhagen.
+              Converting pixels and bits for <a href="https://www.signifly.com/">Signifly</a>.
             </motion.p>
           </div>
         </ScrollSection>
@@ -130,15 +130,7 @@ export default function Home() {
                 LinkedIn
               </GlassButton>
             </div>
-            <motion.p
-              className={styles.currentRole}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Currently @ <a href="https://www.signifly.com/">Signifly</a>
-            </motion.p>
+
           </div>
         </section>
       </main>
