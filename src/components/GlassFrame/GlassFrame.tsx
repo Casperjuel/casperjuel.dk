@@ -3,6 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./GlassFrame.module.scss";
 
+const applyColorfulTheme = () => {
+  osc(4, 0.1, 0.8)
+    .color(1.04, 0, -1.1)
+    .rotate(0.30, 0.1)
+    .modulate(noise(2.5), () => 1.5 * Math.sin(0.08 * time))
+    .out(o0);
+};
+
+const applyMonochromeTheme = () => {
+  osc(4, 0.1, 0.8)
+    .saturate(0)
+    .contrast(1.2)
+    .rotate(0.30, 0.1)
+    .modulate(noise(2.5), () => 1.5 * Math.sin(0.08 * time))
+    .out(o0);
+};
+
 export const GlassFrame = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hydraRef = useRef<any>(null);
@@ -28,11 +45,7 @@ export const GlassFrame = () => {
         enableStreamCapture: false,
       });
 
-      osc(4, 0.1, 0.8)
-        .color(1.04, 0, -1.1)
-        .rotate(0.30, 0.1)
-        .modulate(noise(2.5), () => 1.5 * Math.sin(0.08 * time))
-        .out(o0);
+      applyColorfulTheme();
     };
 
     initHydra();
@@ -42,6 +55,20 @@ export const GlassFrame = () => {
         hydraRef.current = null;
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const handleThemeChange = (e: CustomEvent<{ isColorful: boolean }>) => {
+      if (!hydraRef.current) return;
+      if (e.detail.isColorful) {
+        applyColorfulTheme();
+      } else {
+        applyMonochromeTheme();
+      }
+    };
+
+    window.addEventListener('themechange', handleThemeChange as EventListener);
+    return () => window.removeEventListener('themechange', handleThemeChange as EventListener);
   }, []);
 
   return (

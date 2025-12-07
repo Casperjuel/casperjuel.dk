@@ -7,9 +7,10 @@ import styles from "./GlassButton.module.scss";
 interface GlassButtonProps {
   href: string;
   children: React.ReactNode;
+  ariaLabel?: string;
 }
 
-export const GlassButton = ({ href, children }: GlassButtonProps) => {
+export const GlassButton = ({ href, children, ariaLabel }: GlassButtonProps) => {
   const containerRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -33,6 +34,9 @@ export const GlassButton = ({ href, children }: GlassButtonProps) => {
       ref={containerRef}
       href={href}
       className={styles.button}
+      aria-label={ariaLabel || (typeof children === 'string' ? children : undefined)}
+      rel="noopener noreferrer"
+      target="_blank"
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

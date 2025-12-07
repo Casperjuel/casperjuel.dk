@@ -60,6 +60,7 @@ export const ThemeSwitcher = () => {
     const newIsColorful = !isColorful;
     setIsColorful(newIsColorful);
     applyPalette(newIsColorful ? colorfulPalette : monochromePalette);
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { isColorful: newIsColorful } }));
   };
 
   useEffect(() => {
@@ -70,6 +71,9 @@ export const ThemeSwitcher = () => {
     <motion.button
       className={styles.switcher}
       onClick={toggleTheme}
+      aria-label={isColorful ? "Switch to monochrome theme" : "Switch to colorful theme"}
+      aria-pressed={!isColorful}
+      role="switch"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.5 }}
@@ -86,6 +90,7 @@ export const ThemeSwitcher = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
           <circle cx="12" cy="8" r="3" fill="#ff0000" />
@@ -112,6 +117,7 @@ export const ThemeSwitcher = () => {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
           <path

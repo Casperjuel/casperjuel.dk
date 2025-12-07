@@ -57,7 +57,7 @@ export default function Home() {
               viewport={{ once: true }}
             >
               Creating things online for more than 13 years. I have a passion for digital design, code, and tech. Based in Copenhagen.
-              Converting pixels and bits for <a href="https://www.signifly.com/">Signifly</a>.
+              Converting pixels to bits for <a href="https://www.signifly.com/">Signifly</a>.
             </motion.p>
           </div>
         </ScrollSection>
@@ -85,7 +85,7 @@ export default function Home() {
             />
             <GlassCard
               title="Scale"
-              items={["E-commerce", "Production Apps", "CI/CD", "11+ Years"]}
+              items={["E-commerce", "Production Apps", "CI/CD", "13+ Years"]}
               delay={0.2}
             />
           </div>
@@ -102,7 +102,7 @@ export default function Home() {
             />
             <GlassCard
               title="Scale"
-              items={["E-commerce", "Production Apps", "CI/CD", "11+ Years"]}
+              items={["E-commerce", "Production Apps", "CI/CD", "13+ Years"]}
               index={2}
             />
           </div>
@@ -119,17 +119,17 @@ export default function Home() {
             >
               Let's Connect
             </motion.h2>
-            <div className={styles.links}>
-              <GlassButton href="https://github.com/casperjuel/">
+            <nav className={styles.links} aria-label="Social links">
+              <GlassButton href="https://github.com/casperjuel/" ariaLabel="Visit Casper Juel's GitHub profile">
                 Github
               </GlassButton>
-              <GlassButton href="https://www.instagram.com/casper.juel/">
+              <GlassButton href="https://www.instagram.com/casper.juel/" ariaLabel="Visit Casper Juel's Instagram profile">
                 Instagram
               </GlassButton>
-              <GlassButton href="https://www.linkedin.com/in/casperjuel">
+              <GlassButton href="https://www.linkedin.com/in/casperjuel" ariaLabel="Visit Casper Juel's LinkedIn profile">
                 LinkedIn
               </GlassButton>
-            </div>
+            </nav>
 
           </div>
         </section>

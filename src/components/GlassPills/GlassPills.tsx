@@ -129,6 +129,10 @@ export const GlassPills = () => {
     { id: 4, x: 200, y: 400, vx: -3, vy: -1.5, size: 75 },
     { id: 5, x: 400, y: 300, vx: 1.5, vy: 2.5, size: 150 },
     { id: 6, x: 600, y: 250, vx: -2, vy: -2.5, size: 100 },
+    { id: 7, x: 700, y: 350, vx: 2, vy: 1.5, size: 55 },
+    { id: 8, x: 150, y: 500, vx: -1.5, vy: -2, size: 130 },
+    { id: 9, x: 450, y: 450, vx: 2.5, vy: -1, size: 70 },
+    { id: 10, x: 550, y: 100, vx: -2.5, vy: 2, size: 85 },
   ]);
   const [particles, setParticles] = useState<Particle[]>([]);
   const [poppingBalls, setPoppingBalls] = useState<Set<number>>(new Set());
