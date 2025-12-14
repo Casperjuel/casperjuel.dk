@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import "../styles/globals.scss";
 
 const jsonLd = {
@@ -100,7 +101,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
       <GoogleTagManager gtmId="GTM-PDXMB9C" />
     </html>
   );
