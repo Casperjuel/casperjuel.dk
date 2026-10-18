@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dither lab · Casper Juel</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="../reset.css">
+  <link rel="stylesheet" href="../main.css">
+  <script type="importmap">
+    {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
+  </script>
+  <style>
+    html, body { height: 100%; }
+    body { display: grid; grid-template-rows: auto 1fr; }
+    .stage { position: relative; }
+    :root { --scene-ink: var(--fg); --scene-opacity: 1; }
+    #scene { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; touch-action: none; }
+    .panel {
+      position: absolute; left: var(--gutter); bottom: var(--gutter);
+      background: var(--bg); border: 1px solid var(--line); box-shadow: 8px 8px 0 var(--accent);
+      padding: 1rem; display: grid; gap: 0.6rem; width: min(320px, calc(100% - 2 * var(--gutter)));
+      font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
+    }
+    .panel label { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; align-items: center; }
+    .panel input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .panel .row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="wordmark" href="../">← Casper Juel</a>
+    <span class="label">sandbox / dither lab</span>
+    <span></span>
+    <nav class="nav"><a class="web1" href="/sandbox/radius">radius lab</a></nav>
+  </header>
+
+  <div class="stage">
+    <canvas id="scene" data-manual="1"></canvas>
+    <div class="panel">
+      <span class="label">[Ordered dithering · drag to rotate]</span>
+      <label>pixel size <input id="pixel" type="range" min="0.05" max="1" step="0.01" value="0.22"></label>
+      <label>bayer matrix <select id="dither"><option value="2">2×2</option><option value="4" selected>4×4</option><option value="8">8×8</option></select></label>
+      <label>wobble <input id="wobble" type="range" min="0" max="1.2" step="0.01" value="0.35"></label>
+      <label>speed <input id="speed" type="range" min="0" max="3" step="0.01" value="1"></label>
+      <div class="row">
+        <button class="btn ghost" id="regen" type="button">New shape [r]</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createScene } from '../scene.js';
+    const s = createScene(document.getElementById('scene'), { offsetX: 0 });
+    const $ = (q) => document.querySelector(q);
+    $('#pixel').addEventListener('input', (e) => s.setPixel(Number(e.target.value)));
+    $('#dither').addEventListener('change', (e) => { s.uniforms.uDither.value = Number(e.target.value); });
+    $('#wobble').addEventListener('input', (e) => { s.uniforms.uWobble.value = Number(e.target.value); });
+    $('#speed').addEventListener('input', (e) => { s.settings.speed = Number(e.target.value); });
+    $('#regen').addEventListener('click', s.regenerate);
+    addEventListener('keydown', (e) => { if (e.key === 'r') s.regenerate(); });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', s.recolor);
+  </script>
+</body>
+</html>

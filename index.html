@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casper Juel · Creative developer, Copenhagen</title>
+  <meta name="description" content="Casper Juel is a creative developer in Copenhagen who converts pixels to bits: websites, native apps and MCP servers. Side projects include Sponos, aula-mcp, Fondfinder and Byggebørsen.">
+  <meta name="author" content="Casper Juel">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://www.casperjuel.dk/">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Casper Juel">
+  <meta property="og:title" content="Casper Juel · Creative developer">
+  <meta property="og:description" content="Converts pixels to bits. Websites, native apps and MCP servers from Copenhagen.">
+  <meta property="og:url" content="https://www.casperjuel.dk/">
+  <meta property="og:image" content="https://www.casperjuel.dk/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Casper Juel converts pixels to bits">
+  <meta property="og:locale" content="en_US">
+  <meta property="profile:first_name" content="Casper">
+  <meta property="profile:last_name" content="Juel">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Casper Juel · Creative developer">
+  <meta name="twitter:description" content="Converts pixels to bits. Websites, native apps and MCP servers from Copenhagen.">
+  <meta name="twitter:image" content="https://www.casperjuel.dk/img/og.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%230b00ff'/><text x='2' y='12' font-family='monospace' font-size='10' fill='white'>cj</text></svg>">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.casperjuel.dk/#person",
+        "name": "Casper Juel",
+        "givenName": "Casper",
+        "familyName": "Juel",
+        "jobTitle": "Creative Developer",
+        "description": "Creative developer in Copenhagen. Websites, native apps and MCP servers.",
+        "url": "https://www.casperjuel.dk/",
+        "email": "mailto:info@casperjuel.dk",
+        "image": "https://www.casperjuel.dk/img/og.png",
+        "address": { "@type": "PostalAddress", "addressLocality": "Copenhagen", "addressCountry": "DK" },
+        "worksFor": { "@type": "Organization", "name": "Signifly", "url": "https://www.signifly.com/" },
+        "knowsAbout": ["Web development", "TypeScript", "CSS", "Three.js", "Tauri", "Model Context Protocol"],
+        "sameAs": [
+          "https://github.com/casperjuel/",
+          "https://www.linkedin.com/in/casperjuel",
+          "https://www.instagram.com/casper.juel/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.casperjuel.dk/#website",
+        "url": "https://www.casperjuel.dk/",
+        "name": "Casper Juel",
+        "inLanguage": "en",
+        "author": { "@id": "https://www.casperjuel.dk/#person" },
+        "publisher": { "@id": "https://www.casperjuel.dk/#person" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://www.casperjuel.dk/#page",
+        "url": "https://www.casperjuel.dk/",
+        "name": "Casper Juel · Creative developer, Copenhagen",
+        "isPartOf": { "@id": "https://www.casperjuel.dk/#website" },
+        "mainEntity": { "@id": "https://www.casperjuel.dk/#person" },
+        "about": { "@id": "https://www.casperjuel.dk/#person" }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.casperjuel.dk/#projects",
+        "name": "Side projects by Casper Juel",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "Sponos", "url": "https://casperjuel.github.io/sponos/", "operatingSystem": "macOS", "applicationCategory": "MultimediaApplication", "description": "A fast macOS controller for Sonos with Spotify search." } },
+          { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareSourceCode", "name": "aula-mcp", "codeRepository": "https://github.com/Casperjuel/aula-mcp", "programmingLanguage": "TypeScript", "description": "MCP server for Aula, the Danish school platform." } },
+          { "@type": "ListItem", "position": 3, "item": { "@type": "WebSite", "name": "Fondfinder", "url": "https://fondfinder.dk", "description": "Natural-language search across Danish funds and grants." } },
+          { "@type": "ListItem", "position": 4, "item": { "@type": "WebSite", "name": "Byggebørsen", "url": "https://www.byggebørsen.dk", "description": "A marketplace for reused building materials." } },
+          { "@type": "ListItem", "position": 5, "item": { "@type": "WebSite", "name": "Materialepasset", "url": "https://www.materialepasset.dk", "description": "Digital material passports for reused construction materials." } },
+          { "@type": "ListItem", "position": 6, "item": { "@type": "SoftwareSourceCode", "name": "abrp-mcp", "codeRepository": "https://github.com/Casperjuel/abrp-mcp", "programmingLanguage": "TypeScript", "description": "Unofficial MCP server for A Better Route Planner." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- One bitmap font, for one word. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap">
+  <!-- Two stylesheets, like it's 2012. reset.css first, then main.css. -->
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="main.css">
+  <script type="importmap">
+    {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}
+  </script>
+</head>
+<body>
+<!--
+  ============================================================
+   Hi. You opened the inspector. Welcome.
+
+   This page is written in HTML, CSS and JavaScript.
+   Not "compiles to". Not "built with". Written in.
+
+   By day I write TypeScript, Next.js, Hono, React, Tailwind.
+   I like them. But this page is a small monument to the fact
+   that the browser already ships with:
+
+     - a component model      (<details>, <dialog>, <template>)
+     - a router               (<a href>)
+     - a state manager        (the DOM)
+     - a styling system       (CSS, with variables and nesting)
+     - a 3D engine            (WebGL)
+     - zero node_modules      (0 bytes, 0 vulnerabilities)
+
+   Things you will find on this page that you were told to stop using:
+     reset.css, main.css, a .clearfix, floats, a real <marquee>,
+     <center>, a visitor counter, 88×31 badges, and a Konami code.
+     There is a graveyard. Pay your respects. And `reboot` in the terminal.
+
+   View source. It's still a thing. Or: github.com/Casperjuel/casperjuel.dk — CJ
+  ============================================================
+-->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <a class="wordmark" href="/">Casper Juel</a>
+    <span class="label">2026</span>
+    <span class="label coords" id="coords" aria-hidden="true">x:0000 y:0000</span>
+    <nav class="nav" aria-label="Main">
+      <button class="link" id="theme" type="button" aria-label="Toggle theme">[☾]</button>
+      <!-- A native <details> menu. No JS needed to open it. Blue link. Visited purple.
+           The green dashed outline is the browser's old focus ring, brought back on purpose. -->
+      <details class="menu" id="menu">
+        <summary class="web1">Menu <sup id="menu-count">[3]</sup></summary>
+        <ul class="menu-list">
+          <li><a class="web1" href="#work">Work</a></li>
+          <li><a class="web1" href="#sandbox">Sandbox</a></li>
+          <li><a class="web1" href="#graveyard">Graveyard</a></li>
+          <li><a class="web1" href="#contact">Contact</a></li>
+        </ul>
+      </details>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <p class="label">[Hello]</p>
+        <h1 class="display name">Casper Juel</h1>
+        <p class="label">[Creative developer]</p>
+        <p class="display payoff">
+          converts <span class="px">pixels</span> <em>to</em>
+          <span class="bits" id="bits" data-word="bits">bits</span>.
+        </p>
+        <p class="label bin" id="bin" aria-hidden="true">01100010 01101001 01110100 01110011</p>
+        <p class="lede">
+          Fifteen years of making things for the web, and still
+          mildly annoyed about <code>border-radius:&nbsp;50%</code>.
+        </p>
+        <p class="label">COPENHAGEN, DK &nbsp;[55.67°N, 12.57°E]</p>
+        <div class="actions">
+          <button class="btn" id="open-term" type="button">Launch terminal _&gt;</button>
+          <button class="btn ghost" id="regen" type="button" title="Keyboard: r">Regenerate shape [r]</button>
+        </div>
+      </div>
+      <p class="label hero-hint" aria-hidden="true">↓ scroll &nbsp; · &nbsp; drag the thing</p>
+    </section>
+
+    <!-- MINITERM. A native <dialog>: focus trap, Esc to close and a backdrop, all free. -->
+    <dialog class="miniterm" id="miniterm" aria-label="Mini terminal">
+      <div class="miniterm-bar">
+        <span class="label">casper@cj.dk ~ </span>
+        <button class="link" id="close-term" type="button" aria-label="Close terminal">[x]</button>
+      </div>
+      <pre class="miniterm-out" id="term-out" aria-live="polite">Type <b>help</b> and hit enter.
+</pre>
+      <form class="miniterm-in" id="term-form" autocomplete="off">
+        <label for="term-input" class="prompt">&gt;</label>
+        <input id="term-input" type="text" spellcheck="false" autocapitalize="off" placeholder="help">
+      </form>
+    </dialog>
+
+    <!-- WHO -->
+    <!-- This section is laid out with floats and a .clearfix. Not grid. Not flex.
+         It works. It always worked. We just got tired of it. -->
+    <section class="block clearfix" id="who">
+      <h2 class="h2">Who <span class="label">[float: left; float: right; clear: both]</span></h2>
+      <div class="aside float-right">
+        <p class="label">[Currently]</p>
+        <ul class="plain">
+          <li>Building MCP servers for things that should have had an API.</li>
+          <li>Shipping tiny native apps with Tauri.</li>
+          <li>Fishing. Badly. With data.</li>
+        </ul>
+      </div>
+      <p class="big float-left">
+        I'm a developer who cares about the last 2%: the easing curve, the focus ring,
+        the way a layout survives a 320px viewport. I work at
+        <a href="https://www.signifly.com/" rel="noopener">Signifly</a>, where I build
+        websites, apps and the odd thing that does not fit a category.
+      </p>
+    </section>
+
+    <!-- MARQUEE. A real one. <marquee> has never been in any HTML spec and
+         works in every browser you own. That's the web for you. -->
+    <marquee class="marquee" behavior="scroll" direction="left" scrollamount="4" aria-hidden="true">
+      Hot, freshly-baked side projects &nbsp;·&nbsp;
+      No frameworks were harmed &nbsp;·&nbsp;
+      Plain HTML · CSS · JS &nbsp;·&nbsp;
+      Three.js for the vibes &nbsp;·&nbsp;
+      Books opening, get in touch &nbsp;·&nbsp;
+      Signals in the static &nbsp;·&nbsp;
+      Yes, this is a real &lt;marquee&gt; tag &nbsp;·&nbsp;
+      Press ↑↑↓↓←→←→BA &nbsp;·&nbsp;
+    </marquee>
+
+    <!-- WORK -->
+    <section class="block" id="work">
+      <h2 class="h2">Work <span class="label">[hobby projects, mostly]</span></h2>
+      <ol class="projects" id="projects">
+        <li>
+          <a class="project" href="https://casperjuel.github.io/sponos/" rel="noopener" data-shot="img/sponos.png">
+            <span class="p-name">Sponos <span class="tag blink">NEW!</span></span>
+            <span class="p-desc">A fast macOS controller for Sonos with Spotify search, a queue you can drag around, and a floorplan of your rooms.</span>
+            <span class="p-meta">Tauri · Rust · TypeScript · [download]</span>
+          </a>
+        </li>
+        <li>
+          <a class="project" href="https://github.com/Casperjuel/aula-mcp" rel="noopener" data-shot="img/aula-mcp.gif">
+            <span class="p-name">aula-mcp <span class="tag hot">POPULAR</span></span>
+            <span class="p-desc">MCP server for Aula, the Danish school platform. Ask your assistant what's for lunch on Thursday. MitID auth included.</span>
+            <span class="p-meta">TypeScript · Bun · MCP · [open source]</span>
+          </a>
+        </li>
+        <li>
+          <a class="project" href="https://fondfinder.dk" rel="noopener" data-shot="img/fondfinder.png">
+            <span class="p-name">Fondfinder.dk</span>
+            <span class="p-desc">Natural-language search across every Danish fund and grant. Describe a project, get ranked matches with reasons.</span>
+            <span class="p-meta">Next.js · Embeddings · Claude · [live]</span>
+          </a>
+        </li>
+        <li>
+          <a class="project" href="https://www.byggebørsen.dk" rel="noopener" data-shot="img/byggeborsen.png">
+            <span class="p-name">Byggebørsen.dk</span>
+            <span class="p-desc">A marketplace for reused building materials. Web and app, so the leftover tiles from your renovation find a new floor.</span>
+            <span class="p-meta">Next.js · Expo · Turborepo · [live]</span>
+          </a>
+        </li>
+        <li>
+          <a class="project" href="https://www.materialepasset.dk" rel="noopener" data-shot="img/materialepasset.png">
+            <span class="p-name">Materialepasset.dk</span>
+            <span class="p-desc">Digital material passports for reused construction materials. Create them with AI, share them with a QR code, and read a material's full history.</span>
+            <span class="p-meta">Next.js · AI · QR · [live]</span>
+          </a>
+        </li>
+        <li>
+          <span class="project" data-shot="img/hjem.png">
+            <span class="p-name">Hjem</span>
+            <span class="p-desc">Home Assistant wall panels for the Shelly Wall Display. 26 KB gzipped, 58 fps on a 1 GB Cortex-A7, because Lovelace is 5 MB.</span>
+            <span class="p-meta">Vanilla JS · WebSocket · [private]</span>
+          </span>
+        </li>
+        <li>
+          <a class="project" href="https://github.com/Casperjuel/abrp-mcp" rel="noopener" data-shot="img/abrp-mcp.gif">
+            <span class="p-name">abrp-mcp</span>
+            <span class="p-desc">Unofficial MCP server for A Better Route Planner. EV routes, charging stops and range estimates as tools.</span>
+            <span class="p-meta">TypeScript · Hono · Vercel · [open source]</span>
+          </a>
+        </li>
+        <li>
+          <span class="project">
+            <span class="p-name">OrchTerm <span class="tag wip">WIP / HIDDEN</span></span>
+            <span class="p-desc">A macOS terminal that knows about Claude Code: task panes, diffs and git worktrees. Work in progress.</span>
+            <span class="p-meta">Tauri 2 · React · [wip]</span>
+          </span>
+        </li>
+      </ol>
+      <p class="label">More on <a href="https://github.com/casperjuel/" rel="noopener">GitHub</a> [54 repos, half of them forks, don't judge]</p>
+      <!-- Hover preview. One element, moved around with the pointer. -->
+      <figure class="peek" id="peek" hidden aria-hidden="true"><img alt="" decoding="async"></figure>
+    </section>
+
+    <!-- SANDBOX / ANTI-DESIGN -->
+    <section class="block" id="sandbox">
+      <h2 class="h2">Sandbox <span class="label">[things I know about the web]</span></h2>
+      <p class="big">
+        A few deliberately ugly demos. Each one is a bug I have shipped at least once.
+      </p>
+
+      <div class="demos">
+
+        <!-- 01: the ellipse problem -->
+        <article class="demo" id="demo-ellipse">
+          <header class="demo-head">
+            <span class="label">01 / The ellipse problem</span>
+            <button class="link" type="button" data-toggle="ellipse">[fix it]</button>
+          </header>
+          <div class="demo-stage">
+            <button class="pill is-wrong" id="ellipse-btn" type="button">Start your project!</button>
+          </div>
+          <p class="demo-note">
+            <code>border-radius: 50%</code> on a rectangle gives you an ellipse, because 50% is
+            resolved against width <em>and</em> height separately. You wanted a pill. Use
+            <code>border-radius: 9999px</code>, or <code>calc(infinity * 1px)</code> if you like to live dangerously.
+          </p>
+        </article>
+
+        <!-- 02: nested radius -->
+        <article class="demo" id="demo-nested">
+          <header class="demo-head">
+            <span class="label">02 / Nested radius</span>
+            <span class="label">padding <output id="pad-out">24</output>px · outer <output id="rad-out">32</output>px</span>
+          </header>
+          <div class="demo-stage">
+            <div class="nest-outer" id="nest-outer">
+              <div class="nest-inner" id="nest-inner"></div>
+            </div>
+            <div class="sliders">
+              <label>padding <input id="pad" type="range" min="0" max="48" value="24"></label>
+              <label>outer radius <input id="rad" type="range" min="0" max="80" value="32"></label>
+              <label class="check"><input id="nest-fix" type="checkbox"> inner = outer − padding</label>
+            </div>
+          </div>
+          <p class="demo-note">
+            If the inner corner uses the same radius as the outer, the corners look wrong.
+            The inner radius should be <code>outer − padding</code>. Tick the box and watch it stop fighting you.
+          </p>
+        </article>
+
+        <!-- 03: 100vh -->
+        <article class="demo" id="demo-vh">
+          <header class="demo-head">
+            <span class="label">03 / 100vh is a lie on phones</span>
+            <span class="label"><output id="vh-out">—</output></span>
+          </header>
+          <div class="demo-stage vh-stage">
+            <div class="vh-bar vh">100vh</div>
+            <div class="vh-bar dvh">100dvh</div>
+            <div class="vh-bar svh">100svh</div>
+          </div>
+          <p class="demo-note">
+            On mobile the browser chrome comes and goes, and <code>100vh</code> uses the biggest
+            possible viewport. Use <code>dvh</code> for things that should follow the toolbar,
+            <code>svh</code> for things that must never jump.
+          </p>
+        </article>
+
+        <!-- 04: the glass button -->
+        <article class="demo" id="demo-glass">
+          <header class="demo-head">
+            <span class="label">04 / Glass button</span>
+            <span class="label">[11 layers, 0 images]</span>
+          </header>
+          <div class="demo-stage glass-stage">
+            <a class="glass" href="https://github.com/casperjuel/" rel="noopener" aria-label="Casper Juel on GitHub">
+              <span class="g-glow"></span>
+              <span class="g-rim">
+                <span class="g-body">
+                  <span class="g-inner"></span>
+                  <span class="g-sheen"></span>
+                  <span class="g-depth"></span>
+                  <span class="g-specular"></span>
+                  <span class="g-secondary"></span>
+                </span>
+              </span>
+              <span class="g-highlight"></span>
+              <span class="g-text">Github</span>
+            </a>
+          </div>
+          <p class="demo-note">
+            One anchor, eleven nested spans. The rim is a rotating rainbow gradient masked to a 1.5px
+            ring with <code>mask-composite: exclude</code>. Two CSS variables, <code>--mx</code> and
+            <code>--my</code>, carry the pointer position and every layer reads them. No canvas, no images.
+          </p>
+        </article>
+
+      </div>
+
+      <p class="label">Bigger playgrounds:
+        <a href="/sandbox/radius">radius lab</a> ·
+        <a href="/sandbox/dither">dither lab</a>
+      </p>
+    </section>
+
+    <!-- GRAVEYARD. Here lies the code we all wrote. -->
+    <section class="block" id="graveyard">
+      <h2 class="h2">Graveyard <span class="label">[here lies the code we all wrote]</span></h2>
+      <p class="big">Ten years of hacks, each one load-bearing at the time. Click a stone to exhume the body.</p>
+
+      <ul class="stones">
+
+        <li class="stone">
+          <code class="s-name">.clearfix</code>
+          <span class="s-years">2004 – 2017</span>
+          <span class="s-cause">Killed by <code>display: flow-root</code></span>
+          <details><summary>[exhume]</summary><pre>.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.clearfix { *zoom: 1; }</pre></details>
+        </li>
+
+        <li class="stone undead">
+          <code class="s-name">-webkit-font-smoothing</code>
+          <span class="s-years">2010 – ∞</span>
+          <span class="s-cause">Not dead. Still haunting this page. See <code>body {}</code>.</span>
+          <details><summary>[exhume]</summary><pre>body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* mac only. non-standard. everyone ships it anyway. */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">-webkit- -moz- -ms- -o-</code>
+          <span class="s-years">2008 – 2016</span>
+          <span class="s-cause">Killed by Autoprefixer, then by browsers agreeing</span>
+          <details><summary>[exhume]</summary><pre>-webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+        border-radius: 4px;
+-webkit-transition: all .3s;
+   -moz-transition: all .3s;
+     -o-transition: all .3s;
+        transition: all .3s;</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">$(document).ready()</code>
+          <span class="s-years">2006 – 2017</span>
+          <span class="s-cause">Killed by <code>&lt;script defer&gt;</code></span>
+          <details><summary>[exhume]</summary><pre>$(document).ready(function() {
+  $('.btn').click(function(e) {
+    e.preventDefault();
+    $(this).toggleClass('active');
+  });
+});</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">var self = this;</code>
+          <span class="s-years">2006 – 2015</span>
+          <span class="s-cause">Killed by arrow functions</span>
+          <details><summary>[exhume]</summary><pre>var self = this;   // or: var that = this;
+setTimeout(function() {
+  self.render();
+}, 100);</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">(function($){ })(jQuery);</code>
+          <span class="s-years">2008 – 2015</span>
+          <span class="s-cause">Killed by ES modules</span>
+          <details><summary>[exhume]</summary><pre>;(function($, window, undefined) {
+  'use strict';
+  // "undefined" was passed so nobody could redefine undefined.
+  // yes. that was a thing people worried about.
+})(jQuery, window);</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">&lt;!--[if lt IE 9]&gt;</code>
+          <span class="s-years">2009 – 2014</span>
+          <span class="s-cause">Killed by IE 11's retirement, 15 June 2022</span>
+          <details><summary>[exhume]</summary><pre>&lt;!--[if lt IE 9]&gt;
+  &lt;script src="html5shiv.js"&gt;&lt;/script&gt;
+  &lt;script src="respond.min.js"&gt;&lt;/script&gt;
+&lt;![endif]--&gt;</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">*zoom: 1; _height: 1%;</code>
+          <span class="s-years">2005 – 2012</span>
+          <span class="s-cause">Killed by the death of hasLayout</span>
+          <details><summary>[exhume]</summary><pre>.box {
+  *zoom: 1;        /* IE7 and below */
+  _height: 1%;     /* IE6 only */
+  *display: inline; /* inline-block for IE7 */
+}
+/* a parser bug, used as a feature, for seven years */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">filter: progid:...</code>
+          <span class="s-years">2008 – 2013</span>
+          <span class="s-cause">Killed by actual gradients</span>
+          <details><summary>[exhume]</summary><pre>filter: progid:DXImageTransform.Microsoft.gradient(
+  startColorstr='#ff0000', endColorstr='#0000ff', GradientType=0
+);
+/* -ms-filter: "progid:..." for IE8, because of course */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">text-indent: -9999px</code>
+          <span class="s-years">2003 – 2012</span>
+          <span class="s-cause">Killed by SVG and, honestly, by sanity</span>
+          <details><summary>[exhume]</summary><pre>.logo {
+  background: url(logo.png) no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+/* the browser allocated 9999px of inline box. every time. */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">padding-bottom: 56.25%</code>
+          <span class="s-years">2009 – 2021</span>
+          <span class="s-cause">Killed by <code>aspect-ratio</code></span>
+          <details><summary>[exhume]</summary><pre>.video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">translateZ(0)</code>
+          <span class="s-years">2010 – 2018</span>
+          <span class="s-cause">Killed by <code>will-change</code>, then by not needing it</span>
+          <details><summary>[exhume]</summary><pre>.animated {
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+/* "force GPU acceleration". it mostly forced memory usage. */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">.no-js / Modernizr</code>
+          <span class="s-years">2009 – 2017</span>
+          <span class="s-cause">Killed by <code>@supports</code></span>
+          <details><summary>[exhume]</summary><pre>&lt;html class="no-js"&gt;
+&lt;script&gt;document.documentElement.className =
+  document.documentElement.className.replace('no-js', 'js');&lt;/script&gt;
+/* then: .csstransforms .box { ... } */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">FastClick</code>
+          <span class="s-years">2011 – 2016</span>
+          <span class="s-cause">Killed by <code>touch-action: manipulation</code></span>
+          <details><summary>[exhume]</summary><pre>// iOS waited 300ms after a tap to see if it was a double-tap.
+// every app shipped a library to not wait.
+FastClick.attach(document.body);</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">font-size: 62.5%</code>
+          <span class="s-years">2004 – 2016</span>
+          <span class="s-cause">Killed by <code>rem</code> support and calculators</span>
+          <details><summary>[exhume]</summary><pre>html { font-size: 62.5%; }  /* 10px, so 1.4em = 14px */
+body { font-size: 1.4em; }
+/* until something nested and 1.4em became 19.6px */</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">document.all</code>
+          <span class="s-years">1997 – 2011</span>
+          <span class="s-cause">Killed by <code>querySelector</code>, finally</span>
+          <details><summary>[exhume]</summary><pre>var el = document.all ? document.all['nav']
+       : document.layers ? document.layers['nav']
+       : document.getElementById('nav');
+// three browsers, three DOMs, one developer crying</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">onclick="return false"</code>
+          <span class="s-years">1998 – 2012</span>
+          <span class="s-cause">Killed by <code>addEventListener</code> and good taste</span>
+          <details><summary>[exhume]</summary><pre>&lt;a href="javascript:void(0)" onclick="doThing(); return false;"&gt;
+  Click here
+&lt;/a&gt;
+&lt;!-- an anchor that goes nowhere, on purpose --&gt;</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">@font-face ?#iefix</code>
+          <span class="s-years">2009 – 2017</span>
+          <span class="s-cause">Killed by WOFF2 and IE's funeral</span>
+          <details><summary>[exhume]</summary><pre>@font-face {
+  font-family: 'Foo';
+  src: url('foo.eot');
+  src: url('foo.eot?#iefix') format('embedded-opentype'),
+       url('foo.woff') format('woff'),
+       url('foo.ttf') format('truetype'),
+       url('foo.svg#foo') format('svg');
+}</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">&lt;table&gt; layouts</code>
+          <span class="s-years">1996 – 2005</span>
+          <span class="s-cause">Killed by CSS Zen Garden</span>
+          <details><summary>[exhume]</summary><pre>&lt;table width="100%" border="0"&gt;
+  &lt;tr&gt;
+    &lt;td width="200" valign="top" bgcolor="#CCCCCC"&gt;nav&lt;/td&gt;
+    &lt;td valign="top"&gt;content&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;!-- nested four deep. with spacer.gif. see next stone. --&gt;</pre></details>
+        </li>
+
+        <li class="stone">
+          <code class="s-name">&lt;img src="spacer.gif"&gt;</code>
+          <span class="s-years">1996 – 2004</span>
+          <span class="s-cause">Killed by CSS. Eventually.</span>
+          <details><summary>[exhume]</summary><pre>&lt;table cellpadding="0" cellspacing="0" border="0"&gt;
+  &lt;tr&gt;&lt;td width="10"&gt;&lt;img src="spacer.gif" width="10" height="1"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;!-- a 1×1 transparent gif, holding up the entire layout --&gt;</pre></details>
+        </li>
+
+      </ul>
+      <p class="label">Gone, not forgotten. Pour one out. <span class="blink">†</span></p>
+    </section>
+
+    <!-- TOOLKIT -->
+    <section class="block" id="toolkit">
+      <h2 class="h2">Toolkit</h2>
+      <p class="big">Mostly TypeScript. Occasionally Rust. Always HTML.</p>
+      <ul class="tech" aria-label="Some tech">
+        <li><span class="label">[1]</span> TypeScript</li>
+        <li><span class="label">[2]</span> React &amp; Next.js</li>
+        <li><span class="label">[3]</span> Vanilla CSS</li>
+        <li><span class="label">[4]</span> Three.js &amp; WebGL</li>
+        <li><span class="label">[5]</span> Tauri</li>
+        <li><span class="label">[6]</span> Node &amp; Bun</li>
+        <li><span class="label">[7]</span> Postgres</li>
+        <li><span class="label">[8]</span> MCP &amp; Claude</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="block contact" id="contact">
+      <h2 class="h2">Hit me up,</h2>
+      <a class="display mail" href="mailto:info@casperjuel.dk">info@casperjuel.dk</a>
+      <ul class="social" aria-label="Social">
+        <li><a href="https://github.com/casperjuel/" rel="me noopener">GitHub ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/casperjuel" rel="me noopener">LinkedIn ↗</a></li>
+        <li><a href="https://www.instagram.com/casper.juel/" rel="me noopener">Instagram ↗</a></li>
+        <li><a href="https://www.signifly.com/" rel="noopener">Signifly ↗</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- FOOTER. <center> is obsolete. It is also 8 characters long and works. -->
+  <footer class="foot">
+    <center>
+      <div class="construction" aria-hidden="true">UNDER CONSTRUCTION SINCE 2011</div>
+
+      <!-- 88×31. The original web badge format. Hand-drawn in CSS, no GIFs were used. -->
+      <ul class="badges" aria-label="Badges">
+        <li class="badge b-html">HTML<b>5</b></li>
+        <li class="badge b-css">CSS<b>3</b></li>
+        <li class="badge b-js">VANILLA<b>JS</b></li>
+        <li class="badge b-no">NO<b>TAILWIND</b></li>
+        <li class="badge b-valid">W3C<b>VALID*</b></li>
+        <li class="badge b-mac">MADE ON<b>A MAC</b></li>
+        <li class="badge b-ns">BEST IN<b>ANY BROWSER</b></li>
+      </ul>
+
+      <p class="counter label">You are visitor no. <span class="odometer" id="visitors">000000</span></p>
+
+      <p class="label">Built with zero frameworks and one <a href="https://threejs.org" rel="noopener">three.js</a>.
+        &nbsp;·&nbsp; © Casper Juel, <span id="year">2026</span>
+        &nbsp;·&nbsp; <a href="https://github.com/Casperjuel/casperjuel.dk" rel="noopener">source on GitHub</a> or <kbd>⌘⌥U</kbd>
+        &nbsp;·&nbsp; * probably</p>
+    </center>
+  </footer>
+
+  <script src="main.js" defer></script>
+  <script type="module" src="scene.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radius lab · Casper Juel</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="../reset.css">
+  <link rel="stylesheet" href="../main.css">
+  <style>
+    .lab { padding: 2rem var(--gutter) 6rem; max-width: var(--max); display: grid; gap: 3rem; }
+    .lab-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    @media (min-width: 900px) { .lab-grid { grid-template-columns: 1fr 1fr; } }
+    .cell { background: var(--bg); padding: 1.25rem; display: grid; gap: 1rem; align-content: start; }
+    .stage { min-height: 260px; display: grid; place-items: center; gap: 1rem; padding: 1.5rem;
+      background:
+        linear-gradient(color-mix(in srgb, var(--fg) 8%, transparent) 1px, transparent 1px) 0 0 / 100% 16px,
+        linear-gradient(90deg, color-mix(in srgb, var(--fg) 8%, transparent) 1px, transparent 1px) 0 0 / 16px 100%; }
+    .ctl { display: grid; gap: 0.5rem; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; }
+    .ctl label { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; align-items: center; }
+    .ctl input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .out { font-family: var(--font-mono); font-size: 12px; background: color-mix(in srgb, var(--fg) 6%, transparent); padding: 0.75rem; white-space: pre-wrap; }
+
+    /* 1: percentage radius */
+    .box1 { background: var(--accent); width: var(--w, 300px); height: var(--h, 100px); border-radius: var(--r, 50%); transition: all 0.2s; }
+
+    /* 2: slash syntax */
+    .box2 { background: var(--fg); width: 240px; height: 160px; border-radius: 60px 20px 90px 10px / 20px 60px 10px 90px; }
+
+    /* 3: the corner-overlap rule */
+    .box3 { background: var(--accent); width: 240px; height: 120px; border-radius: var(--r3, 100px) 0 0 0; transition: all 0.2s; }
+    .box3b { background: var(--fg); width: 240px; height: 120px; border-radius: var(--r3, 100px) var(--r3, 100px) 0 0; }
+
+    /* 4: outline vs border radius */
+    .box4 { width: 200px; height: 80px; border-radius: 40px; border: 2px solid var(--fg); outline: 3px solid var(--wrong); outline-offset: 6px; display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="wordmark" href="../">← Casper Juel</a>
+    <span class="label">sandbox / radius lab</span>
+    <span></span>
+    <nav class="nav"><a class="web1" href="/sandbox/dither">dither lab</a></nav>
+  </header>
+
+  <main class="lab">
+    <div>
+      <p class="label">[Radius lab]</p>
+      <h1 class="display">border-radius<br>is <em>not</em> one number.</h1>
+      <p class="lede">Four small ways the corner you asked for is not the corner you got.</p>
+    </div>
+
+    <div class="lab-grid">
+
+      <section class="cell">
+        <p class="label">01 / Percentages resolve per axis</p>
+        <div class="stage"><div class="box1" id="box1"></div></div>
+        <div class="ctl">
+          <label>width <input id="w" type="range" min="80" max="360" value="300"></label>
+          <label>height <input id="h" type="range" min="40" max="240" value="100"></label>
+          <label>radius <select id="r"><option>50%</option><option>9999px</option><option>calc(infinity * 1px)</option><option>50% / 50%</option><option>20%</option></select></label>
+        </div>
+        <pre class="out" id="out1"></pre>
+      </section>
+
+      <section class="cell">
+        <p class="label">02 / The slash syntax</p>
+        <div class="stage"><div class="box2"></div></div>
+        <pre class="out">border-radius: 60px 20px 90px 10px / 20px 60px 10px 90px;
+
+horizontal radii / vertical radii
+tl tr br bl     / tl tr br bl
+
+Every corner is an ellipse. Always was.</pre>
+      </section>
+
+      <section class="cell">
+        <p class="label">03 / Radii that don't fit get scaled down</p>
+        <div class="stage"><div class="box3" id="box3"></div><div class="box3b" id="box3b"></div></div>
+        <div class="ctl">
+          <label>top radius <input id="r3" type="range" min="0" max="400" value="100"></label>
+        </div>
+        <pre class="out" id="out3"></pre>
+      </section>
+
+      <section class="cell">
+        <p class="label">04 / Outline follows radius (since 2021)</p>
+        <div class="stage"><div class="box4">focus ring</div></div>
+        <pre class="out">outline used to be a rectangle around a rounded box.
+Chrome 94 / Safari 16.4 / Firefox 88 fixed it.
+Your 2019 focus-ring hacks can go now.</pre>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const b1 = $('#box1');
+    const up1 = () => {
+      const w = $('#w').value, h = $('#h').value, r = $('#r').value;
+      b1.style.setProperty('--w', w + 'px'); b1.style.setProperty('--h', h + 'px'); b1.style.setProperty('--r', r);
+      const cs = getComputedStyle(b1);
+      $('#out1').textContent =
+        `width: ${w}px; height: ${h}px;\nborder-radius: ${r};\n\n` +
+        `computed: ${cs.borderTopLeftRadius}` +
+        (r === '50%' ? `\n→ ${w / 2}px horizontal, ${h / 2}px vertical. An ellipse.` : '');
+    };
+    ['w', 'h', 'r'].forEach((id) => $('#' + id).addEventListener('input', up1));
+    up1();
+
+    const up3 = () => {
+      const r = $('#r3').value;
+      $('#box3').style.setProperty('--r3', r + 'px');
+      $('#box3b').style.setProperty('--r3', r + 'px');
+      const sum = r * 2, w = 240;
+      const f = Math.min(1, w / sum);
+      $('#out3').textContent =
+        `border-radius: ${r}px ${r}px 0 0;   /* box is 240px wide */\n\n` +
+        (sum > w
+          ? `${r} + ${r} = ${sum}px > 240px\nspec: all radii scaled by f = 240 / ${sum} = ${f.toFixed(3)}\neffective radius: ${(r * f).toFixed(1)}px`
+          : `${r} + ${r} = ${sum}px ≤ 240px\nno scaling. you get what you asked for.`);
+    };
+    $('#r3').addEventListener('input', up3);
+    up3();
+  </script>
+</body>
+</html>
